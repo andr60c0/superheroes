@@ -1,0 +1,15 @@
+input,
+label,
+textarea,
+button {
+  display: block;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+div input {
+  display: inline;
+}

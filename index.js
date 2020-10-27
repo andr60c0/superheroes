@@ -16,12 +16,12 @@ function get(){
             showHeroes
         );
 }
-function post(){
-    const data = {
+function post(data){
+    /*const data = {
         real_name: "Peter Parkwer",
         hero_name: "Spiderman",
         age: 20
-      };
+      };*/
       
       const postData = JSON.stringify(data);
       fetch(endpoint, {
@@ -89,3 +89,31 @@ get();
 
 
 
+const form = document.querySelector("form");
+
+form.setAttribute("novalidate", true);
+form.addEventListener("submit",e=>{
+    e.preventDefault();
+    if(form.checkValidity()){
+        console.log("valid")
+
+        const data = {
+            real_name:form.elements.real_name.value,
+            hero_name:form.elements.hero_name.value,
+            home_planet:form.elements.home_planet.value,
+            age:form.elements.age.value,
+            sworn_villains:form.elements.sworn_villains.value.split("\n"),
+            gender:form.elements.gender.value,
+            origin_story:form.elements.origin_story.value,
+            team:form.elements.team.value.split("\n"),
+            weaknesses:form.elements.weaknesses.value.split("\n"),
+            powers:form.elements.powers.value.split("\n"),
+            weapons:form.elements.weapons.value.split("\n"),
+            
+        }
+        post(data)
+    } else {
+        console.log("invalid")
+        form.reportValidity();
+    }
+})

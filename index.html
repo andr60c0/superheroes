@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
@@ -26,32 +27,36 @@
         </label>
         <label>
             Sworn Enemies
-            <textarea name="sworn_enemies"></textarea>
+            <textarea name="sworn_villains"></textarea>
         </label>
+        <p>Gender</p>
         <div class="genderContainer">
-            Gender
             <label>
+                <input type="radio" required name="gender" value="Female">
                 Female    
-                <input type="radio" name="gender" value="Female">
+                
             </label>
             <label>
+                <input type="radio" required name="gender" value="Male">
                 Male    
-                <input type="radio" name="gender" value="Male">
+                
             </label>
             <label>
+                <input type="radio" required name="gender" value="Other">
                 Other    
-                <input type="radio" name="gender" value="Other">
+                
             </label>
         </div>
         <label>
             Origin Story
             <textarea name="origin_story"></textarea>
         </label>
-        <label>
-            Team
-            <input type="checkbox" name="team" value="Avengers">
-            <input type="checkbox" name="team" value="Justice League">
-        </label>
+        <p>Team</p>
+        <div>
+            <label><input type="checkbox" name="team" value="Avengers"> Avengers</label>
+            <label><input type="checkbox" name="team" value="Justice League"> Justice League</label>
+            <label><input type="checkbox" name="team" value="Justice League"> Guardians Of The Galaxy</label>
+        </div>
         <label>
             Weaknesses
             <textarea name="weaknesses"></textarea>
