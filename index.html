@@ -6,6 +6,66 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <form>
+        <label>
+            Real Name
+            <input type="text" name="real_name">
+        </label>
+        <label>
+            Hero name
+            <input type="text" name="hero_name" required>
+        </label>
+        <label>
+            Home Planet
+            <input type="text" name="home_planet">
+        </label>
+        <label>
+            Age
+            <input type="number" name="age">
+        </label>
+        <label>
+            Sworn Enemies
+            <textarea name="sworn_enemies"></textarea>
+        </label>
+        <div class="genderContainer">
+            Gender
+            <label>
+                Female    
+                <input type="radio" name="gender" value="Female">
+            </label>
+            <label>
+                Male    
+                <input type="radio" name="gender" value="Male">
+            </label>
+            <label>
+                Other    
+                <input type="radio" name="gender" value="Other">
+            </label>
+        </div>
+        <label>
+            Origin Story
+            <textarea name="origin_story"></textarea>
+        </label>
+        <label>
+            Team
+            <input type="checkbox" name="team" value="Avengers">
+            <input type="checkbox" name="team" value="Justice League">
+        </label>
+        <label>
+            Weaknesses
+            <textarea name="weaknesses"></textarea>
+        </label>
+        <label>
+            Powers
+            <textarea name="powers"></textarea>
+        </label>
+        <label>
+            Weapons
+            <textarea name="weapons"></textarea>
+        </label>
+        <button>Save</button>
+    </form>
     <main></main>
     <template>
         <article class="superhero">
