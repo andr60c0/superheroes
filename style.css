@@ -13,3 +13,6 @@ label {
 div input {
   display: inline;
 }
+textarea {
+  min-height: 100px;
+}
