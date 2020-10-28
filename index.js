@@ -105,7 +105,6 @@ form.addEventListener("submit",e=>{
             weaknesses:form.elements.weaknesses.value.split("\n"),
             powers:form.elements.powers.value.split("\n"),
             weapons:form.elements.weapons.value.split("\n"),
-            
         }
         post(data)
     } else {
