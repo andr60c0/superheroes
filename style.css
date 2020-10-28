@@ -1,18 +1,301 @@
-input,
-label,
-textarea,
-button {
-  display: block;
-}
-label {
-  font-weight: bold;
-  margin-bottom: 1rem;
-  cursor: pointer;
+@font-face {
+  font-family: "Market";
+  src: url("market.woff2") format("woff2");
+  font-weight: 400;
 }
 
-div input {
-  display: inline;
+.toggle {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
+
+.site {
+  --offset: -7rem;
+  display: grid;
+  grid: auto-flow auto / minmax(1rem, 1fr) minmax(0, 50ch) minmax(1rem, 1fr);
+}
+
+.site > :not(.full) {
+  grid-column: 2 / -2;
+}
+
+header {
+  display: grid;
+  place-content: end center;
+  grid-column: 1 / -1;
+  color: #fff;
+  text-align: center;
+  height: 50vh;
+  background: url(marvel-dc.webp) 50% 0% / cover,
+    linear-gradient(to bottom right, #241b2f, #3a243f);
+  background-blend-mode: multiply;
+  padding: calc(var(--offset) * -1 + 10px) 1rem;
+  --mask: radial-gradient(
+      farthest-side at 50% 0,
+      #000 calc(100% - 2px),
+      transparent 100%
+    )
+    50% 0% / 200% 100% no-repeat;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+
+header h1 {
+  font-family: "Market";
+  font-size: 6rem;
+  font-weight: 400;
+}
+
+form {
+  --form-bg: #fff;
+  position: relative;
+  margin: var(--offset) 0 2rem;
+  padding: 1rem;
+  background: var(--form-bg);
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+form::before,
+form::after {
+  content: "";
+  position: absolute;
+  width: 6rem;
+  height: 6rem;
+  transform: translate(var(--x, -50%), var(--y, -50%));
+  background: radial-gradient(circle at 50%, #463866 2px, transparent 0 10px)
+    100% 100% / 10px 10px round round;
+  z-index: -1;
+}
+
+form::before {
+  left: 0;
+  top: 0;
+}
+form::after {
+  --x: 50%;
+  --y: 50%;
+  right: 0;
+  bottom: 0;
+}
+
+form > * + * {
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  display: grid;
+  gap: 5px;
+}
+
+label {
+  font-weight: 700;
+  line-height: 1;
+}
+
+.form-group:focus-within label,
+.form-group:focus-within .hint {
+  color: rebeccapurple;
+}
+
+input {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="text"],
+input[type="number"],
 textarea {
-  min-height: 100px;
+  color: #212121;
+  border: 1px solid #21212133;
+  background: #f5f5f5;
+  padding: 8px 12px 10px;
+  border-radius: 4px;
+  outline: none;
+  caret-color: rebeccapurple;
+  resize: none;
+  transition: 0.3s background;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  background: transparent;
+}
+
+input[name="age"] {
+  max-width: 8ch;
+}
+
+input:focus {
+  border-color: rebeccapurple;
+}
+
+input:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Checkbox & Radio btns */
+input[type="checkbox"],
+input[type="radio"] {
+  height: 1rem;
+  width: 1rem;
+  margin: 0;
+  border-radius: 4px;
+  display: grid;
+  outline: none;
+  transition: 0.3s;
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0 #463866;
+}
+
+input[type="radio"]:checked {
+  box-shadow: inset 0 0 0 0.25em #463866;
+}
+
+input[type="checkbox"] {
+  display: grid;
+}
+input[type="checkbox"]::after {
+  content: "";
+  height: 6px;
+  width: 10px;
+  border: solid #fff;
+  border-width: 0 0 2px 2px;
+  place-self: center;
+  transform: translateY(-1px) rotate(-45deg);
+  transition: 0.3s;
+  opacity: 0;
+}
+input[type="checkbox"]:checked {
+  background: currentColor;
+}
+input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
+/* Hint */
+.hint {
+  color: #585858;
+  line-height: 1.125;
+  /* margin-bottom: 2px; */
+  transition: 0.3s;
+}
+
+fieldset {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+  padding: 1rem;
+  border: 1px dashed #463866;
+  border-radius: 4px;
+}
+
+legend {
+  padding: 0;
+  font-weight: 600;
+  padding: 0 0.5rem;
+  margin: 0;
+  background: var(--form-bg);
+  margin-bottom: -0.5rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.08rem;
+  color: #463866;
+}
+
+legend + .hint {
+  margin-bottom: 1rem;
+}
+
+legend + .form-group {
+  margin-top: 1rem;
+}
+
+.controls {
+  grid-row: span 3;
+}
+
+.controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 4px 6px 4px 4px;
+  margin-left: -4px;
+  border-radius: 10px;
+}
+
+.controls li:focus-within label,
+.controls label:hover {
+  background: #46386611;
+}
+
+.btn {
+  color: #212121;
+  border: 1px solid #21212133;
+  background: rebeccapurple;
+  font-weight: 600;
+  color: #fff;
+  padding: 8px 12px 10px;
+  border-radius: 4px;
+}
+
+/* Alt styling */
+.alt .site {
+  display: grid;
+  grid: auto-flow auto / minmax(1rem, 1fr) minmax(0, 65ch) minmax(1rem, 1fr);
+}
+
+.alt .form-group,
+.alt fieldset {
+  display: grid;
+  grid: auto auto / auto-flow 1fr;
+  grid-template-columns: 0.75fr;
+}
+
+.alt .hint {
+  font-size: 0.9rem;
+}
+
+.alt fieldset {
+  padding: 0;
+  border: 0;
+}
+
+.alt input[type="text"],
+.alt input[type="number"],
+.alt textarea {
+  grid-row: span 3;
+  align-self: start;
+}
+
+.alt legend {
+  padding: 0;
+  margin-bottom: 0;
+  text-transform: revert;
+  font-size: 1rem;
+  background: transparent;
+  letter-spacing: revert;
+  color: inherit;
+  float: left;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Helvetica Neue", Arial, sans-serif;
+  background: hsl(240 0% 95%);
+}
+
+input:-webkit-autofill {
+  transition: 5000s background 0s !important;
 }
