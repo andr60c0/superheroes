@@ -95,8 +95,10 @@ form.setAttribute("novalidate", true);
 form.addEventListener("submit",e=>{
     e.preventDefault();
     if(form.checkValidity()){
-        console.log("valid", form.elements.team)
-        RadioNodeList.prototype.map=Array.prototype.map;
+        const teamAsArray = Array.from(form.elements.team);
+        const checked = teamAsArray.filter(cb=>cb.checked);
+        const teamAsSimpleArray = checked.map(cb=>cb.value);
+        
         const data = {
             real_name:form.elements.real_name.value,
             hero_name:form.elements.hero_name.value,
@@ -105,7 +107,7 @@ form.addEventListener("submit",e=>{
             sworn_villains:form.elements.sworn_villains.value.split("\n"),
             gender:form.elements.gender.value,
             origin_story:form.elements.origin_story.value,
-            team:form.elements.team.map(cb=>cb.value),
+            team:teamAsSimpleArray,
             weaknesses:form.elements.weaknesses.value.split("\n"),
             powers:form.elements.powers.value.split("\n"),
             weapons:form.elements.weapons.value.split("\n"),
