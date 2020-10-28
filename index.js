@@ -1,5 +1,6 @@
 const key ="5f96a7f34b77c1637d147dd0";
 const endpoint = "https://fe2020autumn-8542.restdb.io/rest/superheroes";
+get();
 
 function get(){
     fetch(endpoint, {
@@ -9,11 +10,11 @@ function get(){
           "x-apikey": key,
           "cache-control": "no-cache"
         }
-    })
-    .then(e => e.json())
-    .then(
-        showHeroes
-    );
+      })
+        .then(e => e.json())
+        .then(
+            showHeroes
+        );
 }
 function post(data){
     const postData = JSON.stringify(data);
@@ -78,6 +79,37 @@ function showHeroes(list){
         main.appendChild(clone)
     })
 }
-get();
 
 
+
+
+const form = document.querySelector("form");
+
+form.setAttribute("novalidate", true);
+form.addEventListener("submit",e=>{
+    e.preventDefault();
+    if(form.checkValidity()){
+        const teamAsArray = Array.from(form.elements.team);
+        const checked = teamAsArray.filter(cb=>cb.checked);
+        const teamAsSimpleArray = checked.map(cb=>cb.value);
+        
+        const data = {
+            real_name:form.elements.real_name.value,
+            hero_name:form.elements.hero_name.value,
+            home_planet:form.elements.home_planet.value,
+            age:form.elements.age.value,
+            sworn_villains:form.elements.sworn_villains.value.split("\n"),
+            gender:form.elements.gender.value,
+            origin_story:form.elements.origin_story.value,
+            team:teamAsSimpleArray,
+            weaknesses:form.elements.weaknesses.value.split("\n"),
+            powers:form.elements.powers.value.split("\n"),
+            weapons:form.elements.weapons.value.split("\n"),
+            
+        }
+        post(data)
+    } else {
+        console.log("invalid")
+        form.reportValidity();
+    }
+})
