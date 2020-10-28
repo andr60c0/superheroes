@@ -27,7 +27,7 @@ header {
   color: #fff;
   text-align: center;
   height: 50vh;
-  background: url(marvel-dc.webp) 50% 0% / cover,
+  background: url(marvel-dc.webp) 50% 0% / contain,
     linear-gradient(to bottom right, #241b2f, #3a243f);
   background-blend-mode: multiply;
   padding: calc(var(--offset) * -1 + 10px) 1rem;
