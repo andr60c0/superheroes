@@ -1,7 +1,6 @@
 const key ="5f96a7f34b77c1637d147dd0";
 const endpoint = "https://fe2020autumn-8542.restdb.io/rest/superheroes";
 
-document.querySelector("button.addHero").addEventListener("click", post)
 function get(){
     fetch(endpoint, {
         method: "get",
@@ -10,31 +9,25 @@ function get(){
           "x-apikey": key,
           "cache-control": "no-cache"
         }
-      })
-        .then(e => e.json())
-        .then(
-            showHeroes
-        );
+    })
+    .then(e => e.json())
+    .then(
+        showHeroes
+    );
 }
 function post(data){
-    /*const data = {
-        real_name: "Peter Parkwer",
-        hero_name: "Spiderman",
-        age: 20
-      };*/
-      
-      const postData = JSON.stringify(data);
-      fetch(endpoint, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "x-apikey": key,
-          "cache-control": "no-cache"
-        },
-        body: postData
-      })
-        .then(res => res.json())
-        .then(get);
+    const postData = JSON.stringify(data);
+    fetch(endpoint, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "x-apikey": key,
+        "cache-control": "no-cache"
+    },
+    body: postData
+    })
+    .then(res => res.json())
+    .then(get);
 }
 function deleteIt(id){
     fetch(`${endpoint}/${id}`, {
