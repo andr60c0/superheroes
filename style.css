@@ -30,7 +30,7 @@ header {
   background: url(marvel-dc.webp) 50% 0% / contain,
     linear-gradient(to bottom right, #241b2f, #3a243f);
   background-blend-mode: multiply;
-  padding: calc(var(--offset) * -1 + 10px) 1rem;
+  padding: 1rem 1rem calc(var(--offset) * -1 + 10px);
   --mask: radial-gradient(
       farthest-side at 50% 0,
       #000 calc(100% - 2px),
@@ -42,6 +42,7 @@ header {
 }
 
 header h1 {
+  position: relative;
   font-family: "Market";
   font-size: 6rem;
   font-weight: 400;
@@ -58,22 +59,35 @@ form {
   border-radius: 10px;
 }
 
-form::before,
+header h1::before,
 form::after {
   content: "";
   position: absolute;
-  width: 6rem;
-  height: 6rem;
+  width: var(--s, 6rem);
+  height: var(--s, 6rem);
   transform: translate(var(--x, -50%), var(--y, -50%));
-  background: radial-gradient(circle at 50%, #463866 2px, transparent 0 10px)
+  background: radial-gradient(
+      circle at 50%,
+      var(--dot-color, #463866) 2px,
+      transparent 0 10px
+    )
     100% 100% / 10px 10px round round;
   z-index: -1;
 }
 
-form::before {
+header h1::before {
+  --s: 3.5rem;
+  --x: -25%;
+  --y: 0%;
+  --dot-color: #fb28a8;
+  --mask: radial-gradient(circle at 75% 75%, transparent, 50%, red);
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
   left: 0;
   top: 0;
+  border-radius: 2rem 0 2rem 0;
 }
+
 form::after {
   --x: 50%;
   --y: 50%;
