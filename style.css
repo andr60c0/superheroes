@@ -315,9 +315,15 @@ body {
 input:-webkit-autofill {
   transition: 5000s background 0s !important;
 }
-.hidden {
-  display: none;
+
+form .invalid {
+  background: hotpink;
 }
-form .error {
+
+form .valid {
+  background: #c0ffee;
+}
+
+button.btn:disabled {
   background: hotpink;
 }

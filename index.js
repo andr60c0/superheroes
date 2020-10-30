@@ -26,7 +26,10 @@ function post(data) {
     body: postData,
   })
     .then((res) => res.json())
-    .then(get);
+    .then((data) => {
+      form.elements.submit.disabled = false;
+      get(data);
+    });
 }
 function deleteIt(id) {
   fetch(`${endpoint}/${id}`, {
@@ -77,3 +80,27 @@ function showHeroes(list) {
     main.appendChild(clone);
   });
 }
+
+const form = document.querySelector("form");
+//form.setAttribute("novalidate", true);
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  form.elements.submit.disabled = true;
+  const filtered = Array.from(form.elements.team).filter((cb) => cb.checked);
+  const mapped = filtered.map((cb) => cb.value);
+
+  const myData = {
+    real_name: form.elements.real_name.value,
+    hero_name: form.elements.hero_name.value,
+    home_planet: form.elements.home_planet.value,
+    age: form.elements.age.value,
+    gender: form.elements.gender.value,
+    sworn_villains: form.elements.sworn_villains.value.split("\n"),
+    team: mapped,
+  };
+  /*
+
+*/
+  post(myData);
+});
