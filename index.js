@@ -1,19 +1,11 @@
-const key = "5f96a7f34b77c1637d147dd0";
-const endpoint = "https://fe2020autumn-8542.restdb.io/rest/superheroes";
-get();
+import autoExpand from "./modules/utilities";
+import * as config from "./modules/config";
+import { get } from "./modules/rest";
 
-function get() {
-  fetch(endpoint, {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "x-apikey": key,
-      "cache-control": "no-cache",
-    },
-  })
-    .then((e) => e.json())
-    .then(showHeroes);
-}
+autoExpand();
+
+get(config.endpoint, showHeroes);
+
 function post(data) {
   const postData = JSON.stringify(data);
   fetch(endpoint, {
