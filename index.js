@@ -6,6 +6,12 @@ autoExpand();
 
 get(config.endpoint, showHeroes);
 
+const body = document.body;
+console.log(localStorage.getItem("alt"));
+if (localStorage.getItem("alt") && localStorage.getItem("alt") != "false") {
+  body.classList.add("alt");
+}
+
 function post(data) {
   const postData = JSON.stringify(data);
   fetch(endpoint, {
